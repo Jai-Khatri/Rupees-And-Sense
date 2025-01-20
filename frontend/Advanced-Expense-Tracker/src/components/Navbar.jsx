@@ -4,6 +4,7 @@ import ExpenseIcon from '../assets/Expense.png';
 import IncomeIcon from '../assets/savings.png';
 import LogoutIcon from '../assets/logout.png';
 import GraphsIcon from '../assets/graph.png';
+import HistoryIcon from '../assets/history.png';
 import LoginIcon from '../assets/login.png';
 import useAuthStore from '../store/useAuthStore.js';
 import { toast } from 'react-toastify';
@@ -46,6 +47,16 @@ const Navbar = () => {
             isOpen ? 'flex' : 'hidden'
           } bg-gray-800 w-full md:w-auto space-x-6 rounded-md shadow-lg absolute md:static top-16 left-0 flex-wrap mt-4`}
         >
+
+          {isAuthenticated && (
+             <li className="text-white py-2 p-4 md:p-2 hover:bg-gray-700 cursor-pointer rounded transition duration-300 flex items-center">
+             <Link to="/history" className="flex items-center">
+               <img src={HistoryIcon} alt="History Icon" className="w-8 h-8 mr-2" />
+               History
+             </Link>
+           </li>
+          )}
+
           {/* Graphs and Reports link (visible if authenticated) */}
           {isAuthenticated && (
             <li className="text-white py-2 p-4 md:p-2 hover:bg-gray-700 cursor-pointer rounded transition duration-300 flex items-center">

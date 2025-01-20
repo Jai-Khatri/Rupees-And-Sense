@@ -4,7 +4,7 @@ import { Chart as ChartJS, LineElement, PointElement, LinearScale, Title, Toolti
 import Navbar from '../components/Navbar';
 import useFinanceStore from '../store/useFinanceStore.js';
 import useAuthStore from '../store/useAuthStore.js';
-import History from '../components/History.jsx';
+import LatestTransactions from '../components/LatestTransactions'; // Import the new component
 
 // Register Chart.js components
 ChartJS.register(LineElement, PointElement, LinearScale, Title, Tooltip, Legend, ArcElement, CategoryScale, Filler);
@@ -71,10 +71,10 @@ const Graph = () => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen p-4">
-        <div className="flex flex-col w-full md:w-2/3 lg:w-3/5 max-w-lg mb-8">
+      <div className="flex flex-col md:flex-row items-start justify-center min-h-screen p-4">
+        <div className="flex flex-col w-full md:w-2/3 lg:w-3/5 max-w-lg mb-8 bg-gray-800 rounded-lg shadow-lg p-6">
           <h3 className="text-xl text-white mb-4">Income and Expenses Over Time</h3>
-          <div className="h-64 md:h-80 lg:h-96">
+          <div className="h-64 md:h-80 lg:h-96 mb-6">
             <Line data={lineData} options={{ maintainAspectRatio: false }} />
           </div>
           
@@ -101,7 +101,7 @@ const Graph = () => {
               {netIncome >= 0 ? (
                 <p className="text-green-400 mt-4 text-lg">Net Income: <span className="font-bold">&#x20b9;{netIncome}</span></p>
               ) : (
-                <p className="text-red-400 mt-4 text-lg">Net Loss: <span className="font-bold">${Math.abs(netIncome)}</span></p>
+                <p className="text-red-400 mt-4 text-lg">Net Loss: <span className="font-bold">&#x20b9;{Math.abs(netIncome)}</span></p>
               )}
             </>
           ) : (
@@ -110,8 +110,8 @@ const Graph = () => {
             </p>
           )}
 
-          {/* Render the transaction history component */}
-          <History />
+          {/* Include Latest Transactions Component */}
+          <LatestTransactions incomeList={incomeList} expenseList={expenseList} />
         </div>
       </div>
       

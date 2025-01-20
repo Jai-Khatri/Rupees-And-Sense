@@ -5,6 +5,7 @@ import Login from "./Pages/Login.jsx";
 import Signup from "./Pages/Signup.jsx"; 
 import LogExpense from "./Pages/LogExpense.jsx";
 import LogIncome from "./Pages/LogIncome.jsx";
+import History from "./Pages/History.jsx";
 import useAuthStore from './store/useAuthStore';
 import { ToastContainer } from 'react-toastify'; 
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      <div className="bg-gradient-to-r from-custom-dark via-custom-mid to-custom-light h-screen lg:overflow-hidden">
+      <div >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -23,6 +24,7 @@ function App() {
           <Route path="/logExpense" element={isAuthenticated ? <LogExpense /> : <Navigate to="/login" />} />
           <Route path="/logIncome" element={isAuthenticated ? <LogIncome /> : <Navigate to="/login" />} />
           <Route path="/graph" element={isAuthenticated? <Graph/> : <Navigate to="/login" />} />
+          <Route path="/history" element={isAuthenticated? <History/> : <Navigate to="/login" />} />
         </Routes>
         <ToastContainer position="top-center" autoClose={1100}/>
       </div>
